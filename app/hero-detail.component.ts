@@ -26,8 +26,7 @@ export class HeroDetailComponent implements OnInit {
       if (params['id'] !== undefined) {
         let id = +params['id'];
         this.navigated = true;
-        this.heroService.getHero(id)
-            .then(hero => this.hero = hero);
+        this.heroService.backend.getHero(id);
       } else {
         this.navigated = false;
         this.hero = new Hero();
@@ -36,7 +35,7 @@ export class HeroDetailComponent implements OnInit {
   }
 
   save(): void {
-    this.heroService
+    this.heroService.backend
         .save(this.hero)
         .then(hero => {
           this.hero = hero; // saved hero, w/ id if new

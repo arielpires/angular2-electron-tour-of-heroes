@@ -10,6 +10,7 @@ import './rxjs-extensions';
 import { AppComponent } from './app.component';
 import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { HeroService } from './hero.service';
+import { Backend } from './http.backend';
 import { HeroSearchComponent } from './hero-search.component';
 
 @NgModule({
@@ -26,7 +27,8 @@ import { HeroSearchComponent } from './hero-search.component';
     routedComponents
   ],
   providers: [
-    HeroService
+    HeroService,
+    Backend
   ],
   bootstrap: [AppComponent]
 })

@@ -22,7 +22,7 @@ export class HeroesComponent implements OnInit {
     private heroService: HeroService) { }
 
   getHeroes(): void {
-    this.heroService
+    this.heroService.backend
       .getHeroes()
       .then(heroes => this.heroes = heroes)
       .catch(error => this.error = error);
@@ -40,7 +40,7 @@ export class HeroesComponent implements OnInit {
 
   deleteHero(hero: Hero, event: any): void {
     event.stopPropagation();
-    this.heroService
+    this.heroService.backend
       .delete(hero)
       .then(res => {
         this.heroes = this.heroes.filter(h => h !== hero);
