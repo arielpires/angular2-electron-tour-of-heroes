@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DenisVuyka/ng2-electron.git"
+    "url": "git+https://github.com/pando85/angular2-electron-tour-of-heroes.git"
   },
   "keywords": [
     "Electron",
@@ -22,9 +22,9 @@
   "author": "Denys Vuika <denys.vuika@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DenisVuyka/ng2-electron/issues"
+    "url": "https://github.com/pando85/angular2-electron-tour-of-heroes/issues"
   },
-  "homepage": "https://github.com/DenisVuyka/ng2-electron/#readme",
+  "homepage": "https://github.com/pando85/angular2-electron-tour-of-heroes/#readme",
   "dependencies": {
     "@angular/common": "~2.2.0",
     "@angular/compiler": "~2.2.0",
