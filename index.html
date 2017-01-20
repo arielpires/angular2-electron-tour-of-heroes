@@ -18,6 +18,7 @@
     <script>
       System.import('app').catch(function(err){ console.error(err); });
     </script>
+    <script src="./node_modules/pouchdb/dist/pouchdb.js"></script>
 </head>
 
 <!-- 3. Display the application -->
@@ -28,11 +29,24 @@
     We are using node <script>document.write(process.versions.node)</script>,
     Chromium <script>document.write(process.versions.chrome)</script>,
     and Electron <script>document.write(process.versions.electron)</script>.
+    <h1>PouchDB &#9829; Electron</h1>
+    We are using
+    <ul>
+      <li>Node.js <script>document.write(process.version)</script></li>
+      <li>Electron <script>document.write(process.versions.electron)</script></li>
+      <li>PouchDB <script>document.write(PouchDB.version)</script></li>
+    </ul>
+
+    <div id="idb"></div>
+    <div id="websql"></div>
+    <div id="leveldb"></div>
+    <div id="sqlitedb"></div>
 </body>
 
 <script>
     // You can also require other files to run in this process
     require('./renderer.js')
 </script>
+<script src="script.js"></script>
 
 </html>

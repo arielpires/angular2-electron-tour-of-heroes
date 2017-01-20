@@ -13,8 +13,6 @@ interface BackendInterface {
 @Injectable()
 export class HeroService {
 
-
-
     backend: BackendInterface;
 
     constructor( backend: Backend ){
