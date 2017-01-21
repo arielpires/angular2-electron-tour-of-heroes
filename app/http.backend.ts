@@ -20,11 +20,11 @@ export class Backend {
 
   getHero(id: number): Promise<Hero> {
     return this.getHeroes()
-      .then(heroes => heroes.find(hero => hero.id === id));
+      .then(heroes => heroes.find(hero => hero._id === id));
   }
 
   save(hero: Hero): Promise<Hero> {
-    if (hero.id) {
+    if (hero._id) {
       return this.put(hero);
     }
     return this.post(hero);
@@ -34,7 +34,7 @@ export class Backend {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    let url = `${this.heroesUrl}/${hero.id}`;
+    let url = `${this.heroesUrl}/${hero._id}`;
 
     return this.http
       .delete(url, { headers: headers })
@@ -60,7 +60,7 @@ export class Backend {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    let url = `${this.heroesUrl}/${hero.id}`;
+    let url = `${this.heroesUrl}/${hero._id}`;
 
     return this.http
       .put(url, JSON.stringify(hero), { headers: headers })

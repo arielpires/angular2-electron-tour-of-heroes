@@ -26,7 +26,8 @@ export class HeroDetailComponent implements OnInit {
       if (params['id'] !== undefined) {
         let id = +params['id'];
         this.navigated = true;
-        this.heroService.backend.getHero(id);
+        console.log(id);
+        this.heroService.backend.getHero(id).then(hero => this.hero = hero);
       } else {
         this.navigated = false;
         this.hero = new Hero();
