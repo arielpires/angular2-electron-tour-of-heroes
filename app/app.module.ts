@@ -10,7 +10,7 @@ import './rxjs-extensions';
 import { AppComponent } from './app.component';
 import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { HeroService } from './hero.service';
-import { Backend } from './http.backend';
+import { Backend } from './pouchdb.backend';
 import { HeroSearchComponent } from './hero-search.component';
 
 @NgModule({
@@ -18,8 +18,7 @@ import { HeroSearchComponent } from './hero-search.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600 })
+    HttpModule
   ],
   declarations: [
     AppComponent,

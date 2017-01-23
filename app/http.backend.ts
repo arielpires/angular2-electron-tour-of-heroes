@@ -18,7 +18,7 @@ export class Backend {
       .catch(this.handleError);
   }
 
-  getHero(id: number): Promise<Hero> {
+  getHero(id: string): Promise<Hero> {
     return this.getHeroes()
       .then(heroes => heroes.find(hero => hero._id === id));
   }

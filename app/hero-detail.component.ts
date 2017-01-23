@@ -24,7 +24,7 @@ export class HeroDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
       if (params['id'] !== undefined) {
-        let id = +params['id'];
+        let id = String(+params['id']);
         this.navigated = true;
         console.log(id);
         this.heroService.backend.getHero(id).then(hero => this.hero = hero);
