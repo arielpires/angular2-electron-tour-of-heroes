@@ -25,7 +25,7 @@ export class Backend {
 
     constructor(){
         if(!this.isInstantiated) {
-            this.database = new PouchDB('my-db');
+            this.database = new PouchDB('mydb');
             //this.database.changes({
             //    live: true,
             //    include_docs: true
@@ -41,19 +41,24 @@ export class Backend {
     }
 
     getHeroes(): Promise<Hero[]> {
-        let heroes = this.database.allDocs()
-            .then(response => response.rows)
+        return this.database.allDocs({include_docs: true})
+            .then(function (response){
+                let heroes = [];
+
+                for (var i = 0, len = response.rows.length; i < len; i++){
+                    heroes.push(response.rows[i].doc);
+                }
+
+                return heroes;
+            })
             .catch(this.handleError);
-        console.log(heroes);
-        return heroes;
     }
 
     getHero(id: string): Promise<Hero> {
-        let hero = this.database.get(id)
-            .then(hero => hero)
+        return this.database.get(id)
+            //.then(hero => hero)
+            .then(function (result){ console.log(result); return result;})
             .catch(this.handleError);
-        console.log(hero);
-        return hero;
     }
 
     save(hero: Hero): Promise<Hero> {
@@ -76,10 +81,32 @@ export class Backend {
             .catch(this.handleError);
     }
 
-
     private post(hero: Hero): Promise<Hero> {
-        return this.database.post(hero)
-            .then(hero => hero)
+        var database = this.database;
+        var handleError = this.handleError;
+
+        return this.getNewId()
+            .then(function(id){
+                hero._id = id;
+                return database.put(hero)
+                    .then(hero => hero)
+                    .catch(handleError);
+            })
+            .catch(this.handleError);
+    }
+
+    private getNewId(): Promise<string> {
+        return this.getHeroes()
+            .then(function(heroes){
+                let maxId = '0';
+                for (var i = 0, len = heroes.length; i < len; i++){
+                    if (Number(maxId) < Number(heroes[i]._id)){
+                        maxId = heroes[i]._id;
+                    }
+                }
+                let newId = String(Number(maxId) + 1);
+                return newId;
+            })
             .catch(this.handleError);
     }
 
